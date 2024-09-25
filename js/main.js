@@ -33,7 +33,6 @@ $(document).ready(() => {
     const pageSwiper = () => {
         const swiper = new Swiper('.section-pages', {
             direction: 'vertical',
-            // slidesPerView: "auto",
             touchReleaseOnEdges: true,
             mousewheel: {
                 releaseOnEdges: true,
@@ -52,6 +51,7 @@ $(document).ready(() => {
                     $('.gotop').on('click', () => {
                         swiper.slideTo(0);
                     });
+                    $('.UNI-footer').css('display', 'none');
                 },
                 slideChange: (swiper) => {
                     const removeAnimate = ['#p1Video', '.detail_p1', '.title', '.detail_p2', '.title', '.title_p2', '.dimmed_p2', '.title_p3', '.detail_p3', '.title_p4', '.bg_p4', '.visible-roomy', '.title_p5', '.detail_p5', '.bg_p6', '.title_p6', '.detail_p6', '.bg_p7', '.title_p7'];
@@ -60,6 +60,7 @@ $(document).ready(() => {
                     $('.swiper-slide').off('scroll');
                     $('.swiper-slide').removeClass('scrollable');
                     $('.gotop').removeClass('show');
+                    $('.UNI-footer').css('display', 'none');
 
                     if (swiper.realIndex === 0) {
                         addAnimateClass(['#p1Video', '.detail_p1', '.title']);
@@ -105,6 +106,7 @@ $(document).ready(() => {
                         $('.swiper-slide')[6].classList.add('scrollable');
                         $('.depth_1')[3].classList.add('active');
                         $('.depth_1')[3].classList.add('point');
+                        $('.UNI-footer').css('display', 'block');
                     }
                 },
                 slideChangeTransitionStart: function (swiper) {
@@ -114,13 +116,16 @@ $(document).ready(() => {
                     swiper.allowTouchMove = true;
                 },
                 touchStart: (swiper, event) => {
-                    var currentSlide = swiper.slides[swiper.activeIndex];
-                    var slideScrollTop = currentSlide.scrollTop;
-                    var scrollHeight = currentSlide.scrollHeight;
-                    var clientHeight = currentSlide.clientHeight;
+                    const currentSlide = swiper.slides[swiper.activeIndex];
+                    const slideScrollTop = currentSlide.scrollTop;
+                    const scrollHeight = currentSlide.scrollHeight;
+                    const clientHeight = currentSlide.clientHeight;
 
-                    var isAtTop = (slideScrollTop === 0);
-                    var isAtBottom = (slideScrollTop + clientHeight >= scrollHeight);
+                    const isAtTop = slideScrollTop === 0;
+                    let isAtBottom = (slideScrollTop + clientHeight >= scrollHeight);
+                    if (swiper.realIndex === 6) {
+                        isAtBottom = false;
+                    }
 
                     if (isAtTop || isAtBottom) {
                         swiper.allowTouchMove = true;
@@ -130,12 +135,18 @@ $(document).ready(() => {
                     event.stopPropagation();
                 },
                 touchMove: (swiper, event) => {
-                    var currentSlide = swiper.slides[swiper.activeIndex];
-                    var slideScrollTop = currentSlide.scrollTop;
-                    var scrollHeight = currentSlide.scrollHeight;
-                    var clientHeight = currentSlide.clientHeight;
+                    const currentSlide = swiper.slides[swiper.activeIndex];
+                    const slideScrollTop = currentSlide.scrollTop;
+                    const scrollHeight = currentSlide.scrollHeight;
+                    const clientHeight = currentSlide.clientHeight;
 
-                    if (slideScrollTop === 0 || slideScrollTop + clientHeight >= scrollHeight) {
+                    const isAtTop = slideScrollTop === 0;
+                    let isAtBottom = (slideScrollTop + clientHeight >= scrollHeight);
+                    if (swiper.realIndex === 6) {
+                        isAtBottom = false;
+                    }
+
+                    if (isAtTop || isAtBottom) {
                         swiper.allowTouchMove = true;
                     } else {
                         swiper.allowTouchMove = false;
@@ -185,7 +196,7 @@ $(document).ready(() => {
                 init: (swiper) => {
                     window.addEventListener('scroll', () => {
                         // 获取当前 scrollTop 值
-                        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
                         if (scrollTop > 0) {
                             $('.gotop').addClass('show');
                         } else {
