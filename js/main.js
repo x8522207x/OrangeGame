@@ -169,7 +169,6 @@ $(document).ready(() => {
     if ($(window).width() > 768) {
         pageSwiper();
     } else {
-        let index = 1;
         $('.event_gnb').toggleClass('type_default');
         $('.event_gnb').toggleClass('type_clear');
         $('.progress1').toggleClass('active');
@@ -236,51 +235,35 @@ $(document).ready(() => {
                     $('.UNI-footer').css('z-index', 100).css('bottom', -80).css('position', 'absolute').css('width', '100%').css('height', 80);
                     $('.UNI-footer').clone().appendTo('.swiper-wrapper');
                     $('.UNI-footer')[1]?.remove();
+                    $('.progress1').on('click', () => { 
+                        swiper.slideTo(0);
+                    });
+                    $('.progress2').on('click', () => { 
+                        swiper.slideTo(1);
+                    });
+                    $('.progress3').on('click', () => { 
+                        swiper.slideTo(2);
+                    });
                 },
                 slideChange: (swiper) => {
                     $('[class*=reward]').removeClass('active');
+                    $('[class*=progress]').removeClass('active');
                     $('.swiper-wrapper2 .swiper-slide-page').css('display', 'none');
                     if (swiper.realIndex === 0) {
                         $('.reward1').toggleClass('active');
+                        $('.progress1').toggleClass('active');
                         $('.swiper-wrapper2 .swiper-slide-page')[0].style.display = 'block';
                     } else if (swiper.realIndex === 1) {
                         $('.reward2').toggleClass('active');
+                        $('.progress2').toggleClass('active');
                         $('.swiper-wrapper2 .swiper-slide-page')[1].style.display = 'block';
                     } else if (swiper.realIndex === 2) {
                         $('.reward3').toggleClass('active');
+                        $('.progress3').toggleClass('active');
                         $('.swiper-wrapper2 .swiper-slide-page')[2].style.display = 'block';
                     }
                 }
             }
-        });
-
-        $('.swiper-button-prev').on('click', () => {
-            if (index === 2) {
-                $('.progress1').toggleClass('active');
-                $('.progress2').toggleClass('active');
-                $('.reward1').toggleClass('active');
-                $('.reward2').toggleClass('active');
-            } else {
-                $('.progress2').toggleClass('active');
-                $('.progress3').toggleClass('active');
-                $('.reward2').toggleClass('active');
-                $('.reward3').toggleClass('active');
-            }
-            index--;
-        });
-        $('.swiper-button-next').on('click', () => {
-            if (index === 1) {
-                $('.progress1').toggleClass('active');
-                $('.progress2').toggleClass('active');
-                $('.reward1').toggleClass('active');
-                $('.reward2').toggleClass('active');
-            } else {
-                $('.progress2').toggleClass('active');
-                $('.progress3').toggleClass('active');
-                $('.reward2').toggleClass('active');
-                $('.reward3').toggleClass('active');
-            }
-            index++;
         });
     }
 });
