@@ -226,25 +226,19 @@ $(document).ready(() => {
                     $('.UNI-footer').css('z-index', 100).css('bottom', -73).css('position', 'absolute').css('width', '100%').css('height', 80);
                     $('.UNI-footer').clone().appendTo('.page-group');
                     $('.UNI-footer')[1]?.remove();
-                    $('.progress1').on('click', () => { 
+                    $('.progress1').on('click', () => {
                         swiper.slideTo(0);
                     });
-                    $('.progress2').on('click', () => { 
+                    $('.progress2').on('click', () => {
                         swiper.slideTo(1);
                     });
-                    $('.progress3').on('click', () => { 
+                    $('.progress3').on('click', () => {
                         swiper.slideTo(2);
                     });
                 },
                 slideChange: (swiper) => {
                     $('[class*=progress]').removeClass('active');
-                    if (swiper.realIndex === 0) {
-                        $('.progress1').toggleClass('active');
-                    } else if (swiper.realIndex === 1) {
-                        $('.progress2').toggleClass('active');
-                    } else if (swiper.realIndex === 2) {
-                        $('.progress3').toggleClass('active');
-                    }
+                    $(`.progress${swiper.realIndex + 1}`).toggleClass('active');
                 }
             }
         });
