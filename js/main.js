@@ -216,6 +216,7 @@ $(document).ready(() => {
             slidesPerView: 1,
             mousewheelControl: true,
             autoHeight: true,
+            speed: 0,
             navigation: {
                 nextEl: '.nested-swiper .swiper-button-next',
                 prevEl: '.nested-swiper .swiper-button-prev',
