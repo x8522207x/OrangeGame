@@ -19,7 +19,7 @@ $(document).ready(() => {
     });
 
     $('.detail_p4 .video-open').on('click', () => {
-        openVideo("5NYtraQokmo");
+        openVideo("xcoRVHz_jl4");
     });
 
     $('.modal_close').on('click', () => {
@@ -172,9 +172,7 @@ $(document).ready(() => {
         let index = 1;
         $('.event_gnb').toggleClass('type_default');
         $('.event_gnb').toggleClass('type_clear');
-        $('.right_arrow').toggleClass('active');
         $('.progress1').toggleClass('active');
-        $('.reward1').toggleClass('active');
         new Swiper('.section-pages', {
             direction: 'vertical',
             slidesPerView: "auto",
@@ -193,7 +191,7 @@ $(document).ready(() => {
             speed: 1000,
             passiveListeners: false,
             on: {
-                init: (swiper) => {
+                init: () => {
                     window.addEventListener('scroll', () => {
                         // 获取当前 scrollTop 值
                         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -214,33 +212,71 @@ $(document).ready(() => {
             }
         });
 
-        $('.left_arrow').on('click', () => {
+        new Swiper('.nested-swiper', {
+            direction: 'horizontal',
+            slidesPerView: "auto",
+            touchReleaseOnEdges: true,
+            mousewheel: {
+                releaseOnEdges: true,
+            },
+            wrapperClass: 'swiper-wrapper2',
+            loop: false,
+            slideActiveClass: 'animated',
+            autoHeight: true,
+            speed: 1000,
+            passiveListeners: false,
+            navigation: {
+                nextEl: '.nested-swiper .swiper-button-next',
+                prevEl: '.nested-swiper .swiper-button-prev',
+            },
+            on: {
+                init: (swiper) => {
+                    $('.reward1').toggleClass('active');
+                    $('.app').css('height', `calc(${$(window).width()} * 7 * 1.386842105263px + 80px)`)
+                    $('.UNI-footer').css('z-index', 100).css('bottom', -80).css('position', 'absolute').css('width', '100%').css('height', 80);
+                    $('.UNI-footer').clone().appendTo('.swiper-wrapper');
+                    $('.UNI-footer')[1]?.remove();
+                },
+                slideChange: (swiper) => {
+                    $('[class*=reward]').removeClass('active');
+                    $('.swiper-wrapper2 .swiper-slide-page').css('display', 'none');
+                    if (swiper.realIndex === 0) {
+                        $('.reward1').toggleClass('active');
+                        $('.swiper-wrapper2 .swiper-slide-page')[0].style.display = 'block';
+                    } else if (swiper.realIndex === 1) {
+                        $('.reward2').toggleClass('active');
+                        $('.swiper-wrapper2 .swiper-slide-page')[1].style.display = 'block';
+                    } else if (swiper.realIndex === 2) {
+                        $('.reward3').toggleClass('active');
+                        $('.swiper-wrapper2 .swiper-slide-page')[2].style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        $('.swiper-button-prev').on('click', () => {
             if (index === 2) {
                 $('.progress1').toggleClass('active');
                 $('.progress2').toggleClass('active');
-                $('.left_arrow').toggleClass('active');
                 $('.reward1').toggleClass('active');
                 $('.reward2').toggleClass('active');
             } else {
                 $('.progress2').toggleClass('active');
                 $('.progress3').toggleClass('active');
-                $('.right_arrow').toggleClass('active');
                 $('.reward2').toggleClass('active');
                 $('.reward3').toggleClass('active');
             }
             index--;
         });
-        $('.right_arrow').on('click', () => {
+        $('.swiper-button-next').on('click', () => {
             if (index === 1) {
                 $('.progress1').toggleClass('active');
                 $('.progress2').toggleClass('active');
-                $('.left_arrow').toggleClass('active');
                 $('.reward1').toggleClass('active');
                 $('.reward2').toggleClass('active');
             } else {
                 $('.progress2').toggleClass('active');
                 $('.progress3').toggleClass('active');
-                $('.right_arrow').toggleClass('active');
                 $('.reward2').toggleClass('active');
                 $('.reward3').toggleClass('active');
             }

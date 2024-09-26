@@ -2317,6 +2317,13 @@ sup {
     .visible_mobile {
         display: none !important;
     }
+
+    .swiper-button-next,
+    .swiper-button-prev,
+    .swiper-pagination,
+    .nested-swiper .swiper-slide {
+        display: none;
+    }
 }
 
 @media (max-width: 1380px) {
@@ -2383,6 +2390,10 @@ sup {
 }
 
 @media (max-width: 1200px) and (min-width: 769px) {
+    .event_banner_content .event_banner_store a:nth-of-type(3) {
+        display: none;
+    }
+
     .content .content_wrap .detail_p3 dl dd {
         left: 28px;
         top: 279px;
@@ -2486,10 +2497,14 @@ sup {
 }
 
 @media (max-width: 768px) {
+    .event_banner_content .event_banner_store a:nth-of-type(3) {
+        display: none;
+    }
+
     .event_gnb_default .event_gnb_default_right {
         margin-right: 0px;
     }
-    
+
     #plate_nav .gotop {
         bottom: 30px;
         height: 38px;
@@ -2930,13 +2945,11 @@ sup {
     .content .content_wrap .detail_p5 p,
     .content .content_wrap .detail_p5 ul,
     .content .content_wrap .detail_p6 p,
-    .content .content_wrap .header .title_p7 span,
-    .content .content_wrap .detail_p7 [class*=reward],
-    .content .content_wrap .detail_p7 [class*=_arrow] {
+    .content .content_wrap .header .title_p7 span {
         display: none;
     }
 
-    .content .content_wrap .detail_p7 [class*=reward].active {
+    [class*=detail_p7] [class*=reward].active {
         background-repeat: no-repeat;
         background-size: cover;
         display: block;
@@ -2944,25 +2957,26 @@ sup {
         left: 0;
         top: 0;
         width: 100%;
+        position: absolute;
     }
 
-    .content .content_wrap .detail_p7 .reward1.active {
-        background-image: url(../img/page7/p7_reward1_m.jpg);
+    .detail_p7_1 .reward1.active {
+        background-image: url(../img/page7/p7_reward1_m.png);
     }
 
-    .content .content_wrap .detail_p7 .reward2.active {
-        background-image: url(../img/page7/p7_reward2_m.jpg);
+    .detail_p7_2 .reward2.active {
+        background-image: url(../img/page7/p7_reward2_m.png);
     }
 
-    .content .content_wrap .detail_p7 .reward3.active {
-        background-image: url(../img/page7/p7_reward3_m.jpg);
+    .detail_p7_3 .reward3.active {
+        background-image: url(../img/page7/p7_reward3_m.png);
     }
 
-    .content .content_wrap .detail_p7 [class*=_arrow].active {
+    /* .detail_p7 [class*=_arrow].active {
         display: block;
-    }
+    } */
 
-    .content .content_wrap .detail_p7 [class*=_arrow] {
+    [class*=swiper-button] {
         background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -2973,17 +2987,21 @@ sup {
         z-index: 5;
     }
 
-    .content .content_wrap .detail_p7 .left_arrow {
+    [class*=swiper-button]:after {
+        display: none;
+    }
+
+    .swiper-button-prev {
         background-image: url(../img/page7/p7_left_arrow_m.png);
         left: 3.6842105263vw;
     }
 
-    .content .content_wrap .detail_p7 .right_arrow {
+    .swiper-button-next {
         background-image: url(../img/page7/p7_right_arrow_m.png);
         right: 3.6842105263vw;
     }
 
-    .content .content_wrap .detail_p7 ol {
+    #page7 ol {
         position: absolute;
         background-image: none;
         bottom: .6578947368vw;
@@ -2994,13 +3012,13 @@ sup {
         width: 100vw;
     }
 
-    .content .content_wrap .detail_p7 ol li {
+    #page7 ol li {
         width: 10.1315789474vw;
         height: 8.1578947368vw;
         position: absolute;
     }
 
-    .content .content_wrap .detail_p7 ol li i {
+    #page7 ol li i {
         background-size: 100% 10%;
         background-position: 50% 90%;
         background-repeat: no-repeat;
@@ -3012,20 +3030,25 @@ sup {
         z-index: 5;
     }
 
-    .content .content_wrap .detail_p7 ol li i.active {
-        background-image: url(../img/page7/p7_progress_on_m.png);
-    }
-
-    .content .content_wrap .detail_p7 ol li .progress1 {
+    #page7 ol li .progress1 {
         left: 32.684211vw;
     }
 
-    .content .content_wrap .detail_p7 ol li .progress2 {
+    #page7 ol li .progress2 {
         left: 44.684211vw;
     }
 
-    .content .content_wrap .detail_p7 ol li .progress3 {
+    #page7 ol li .progress3 {
         left: 56.684211vw;
+    }
+
+    [class*=progress].active {
+        background-image: url(../img/page7/p7_progress_on_m.png) !important;
+    }
+
+    #page7 .visual,
+    #page7>.content {
+        display: none;
     }
 }
 
