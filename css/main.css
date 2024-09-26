@@ -2949,28 +2949,53 @@ sup {
         display: none;
     }
 
-    [class*=detail_p7] [class*=reward].active {
+    [class*=detail_p7] [class*=reward] {
         background-repeat: no-repeat;
         background-size: cover;
-        display: block;
         height: 100%;
-        left: 0;
-        top: 0;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        overflow: hidden;
+        pointer-events: none;
         position: absolute;
+        top: 0;
+        z-index: 1;
     }
 
-    .detail_p7_1 .reward1.active {
-        background-image: url(../img/page7/p7_reward1_m.png);
+    [class*=detail_p7] {
+        height: 138.6842105263vw;
+        transform: translateZ(0) !important;
     }
 
-    .detail_p7_2 .reward2.active {
+    #page7 {
+        display: none;
+    }
+
+    .nested-swiper .swiper-wrapper img {
+        width: 100%;
+        height: auto;
+    }
+
+    .nested-swiper {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow: hidden;
+        list-style: none;
+        padding: 0;
+        z-index: 1;
+        display: block;
+    }
+
+    /* .swiper-wrapper2 .reward2 {
         background-image: url(../img/page7/p7_reward2_m.png);
     }
 
-    .detail_p7_3 .reward3.active {
+    .swiper-wrapper2 .reward3 {
         background-image: url(../img/page7/p7_reward3_m.png);
-    }
+    } */
 
     /* .detail_p7 [class*=_arrow].active {
         display: block;
@@ -3001,7 +3026,7 @@ sup {
         right: 3.6842105263vw;
     }
 
-    #page7 ol {
+    .nested-swiper ol {
         position: absolute;
         background-image: none;
         bottom: .6578947368vw;
@@ -3012,15 +3037,15 @@ sup {
         width: 100vw;
     }
 
-    #page7 ol li {
+    .nested-swiper ol li {
         width: 10.1315789474vw;
         height: 8.1578947368vw;
         position: absolute;
     }
 
-    #page7 ol li i {
+    .nested-swiper ol li i {
         background-size: 100% 10%;
-        background-position: 50% 90%;
+        background-position: 50% 40%;
         background-repeat: no-repeat;
         background-image: url(../img/page7/p7_progress_off_m.png);
         height: 100%;
@@ -3030,15 +3055,15 @@ sup {
         z-index: 5;
     }
 
-    #page7 ol li .progress1 {
+    .nested-swiper ol li .progress1 {
         left: 32.684211vw;
     }
 
-    #page7 ol li .progress2 {
+    .nested-swiper ol li .progress2 {
         left: 44.684211vw;
     }
 
-    #page7 ol li .progress3 {
+    .nested-swiper ol li .progress3 {
         left: 56.684211vw;
     }
 

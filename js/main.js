@@ -213,27 +213,18 @@ $(document).ready(() => {
 
         new Swiper('.nested-swiper', {
             direction: 'horizontal',
-            slidesPerView: "auto",
-            touchReleaseOnEdges: true,
-            mousewheel: {
-                releaseOnEdges: true,
-            },
-            wrapperClass: 'swiper-wrapper2',
-            loop: false,
-            slideActiveClass: 'animated',
+            slidesPerView: 1,
+            mousewheelControl: true,
             autoHeight: true,
-            speed: 1000,
-            passiveListeners: false,
             navigation: {
                 nextEl: '.nested-swiper .swiper-button-next',
                 prevEl: '.nested-swiper .swiper-button-prev',
             },
             on: {
                 init: (swiper) => {
-                    $('.reward1').toggleClass('active');
                     $('.app').css('height', `calc(${$(window).width()} * 7 * 1.386842105263px + 80px)`)
-                    $('.UNI-footer').css('z-index', 100).css('bottom', -80).css('position', 'absolute').css('width', '100%').css('height', 80);
-                    $('.UNI-footer').clone().appendTo('.swiper-wrapper');
+                    $('.UNI-footer').css('z-index', 100).css('bottom', -73).css('position', 'absolute').css('width', '100%').css('height', 80);
+                    $('.UNI-footer').clone().appendTo('.page-group');
                     $('.UNI-footer')[1]?.remove();
                     $('.progress1').on('click', () => { 
                         swiper.slideTo(0);
@@ -246,21 +237,13 @@ $(document).ready(() => {
                     });
                 },
                 slideChange: (swiper) => {
-                    $('[class*=reward]').removeClass('active');
                     $('[class*=progress]').removeClass('active');
-                    $('.swiper-wrapper2 .swiper-slide-page').css('display', 'none');
                     if (swiper.realIndex === 0) {
-                        $('.reward1').toggleClass('active');
                         $('.progress1').toggleClass('active');
-                        $('.swiper-wrapper2 .swiper-slide-page')[0].style.display = 'block';
                     } else if (swiper.realIndex === 1) {
-                        $('.reward2').toggleClass('active');
                         $('.progress2').toggleClass('active');
-                        $('.swiper-wrapper2 .swiper-slide-page')[1].style.display = 'block';
                     } else if (swiper.realIndex === 2) {
-                        $('.reward3').toggleClass('active');
                         $('.progress3').toggleClass('active');
-                        $('.swiper-wrapper2 .swiper-slide-page')[2].style.display = 'block';
                     }
                 }
             }
