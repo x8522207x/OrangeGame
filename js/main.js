@@ -192,7 +192,6 @@ $(document).ready(() => {
             on: {
                 init: () => {
                     window.addEventListener('scroll', () => {
-                        // 获取当前 scrollTop 值
                         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
                         if (scrollTop > 0) {
                             $('.gotop').addClass('show');
