@@ -762,7 +762,7 @@ html {
 }
 
 .event_gnb_default .event_gnb_default_left .event_gnb_menu {
-    background-image: url(https://wp.vod.nexoncdn.co.kr/global/img_eventbanner_menu.png);
+    background-image: url(../img/icon/btn-hbgmenu-m.png);
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: contain;
@@ -2297,7 +2297,6 @@ sup {
     }
 
     section.area {
-        /* height: var(--maxvh-without-navtop); */
         height: 100vh;
         min-height: 900px;
     }
@@ -2944,33 +2943,31 @@ sup {
     .content .content_wrap .detail_p4 .video-open::before,
     .content .content_wrap .detail_p5 p,
     .content .content_wrap .detail_p5 ul,
-    .content .content_wrap .detail_p6 p,
-    .content .content_wrap .header .title_p7 span {
+    .content .content_wrap .detail_p6 p {
         display: none;
     }
 
-    [class*=detail_p7] [class*=reward] {
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        left: 0;
-        overflow: hidden;
-        pointer-events: none;
-        position: absolute;
-        top: 0;
-        z-index: 1;
+    #page7 .content .content_wrap {
+        height: 80%;
     }
 
-    [class*=detail_p7] {
+    .content .content_wrap .header .title_p7 span {
+        background-image: url(../img/page7/p7_title_m.png) !important;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto 16.434783vw;
+        height: 16.869565vw !important;
+        top: unset !important;
+    }
+
+    .content .content_wrap .detail_p7 [class*=reward] {
+        display: none;
+    }
+
+    .detail_p7 {
         height: 138.6842105263vw;
         transform: translateZ(0) !important;
-    }
-
-    #page7 {
-        display: none;
+        align-self: baseline;
     }
 
     .nested-swiper .swiper-wrapper img {
@@ -2981,32 +2978,22 @@ sup {
     .nested-swiper {
         margin-left: auto;
         margin-right: auto;
-        position: relative;
+        position: absolute;
         overflow: hidden;
         list-style: none;
         padding: 0;
         z-index: 1;
         display: block;
+        width: 100vw;
+        top: 16.869565vw;
     }
-
-    /* .swiper-wrapper2 .reward2 {
-        background-image: url(../img/page7/p7_reward2_m.png);
-    }
-
-    .swiper-wrapper2 .reward3 {
-        background-image: url(../img/page7/p7_reward3_m.png);
-    } */
-
-    /* .detail_p7 [class*=_arrow].active {
-        display: block;
-    } */
 
     [class*=swiper-button] {
         background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: cover;
         height: 8.5526315789vw;
-        top: calc(50% + 18.13158vw);
+        top: calc(35% + 18.13158vw);
         width: 5.9210526316vw;
         position: absolute;
         z-index: 5;
@@ -3029,7 +3016,7 @@ sup {
     .nested-swiper ol {
         position: absolute;
         background-image: none;
-        bottom: .6578947368vw;
+        bottom: -5.342105vw;
         height: 9.2105263158vw;
         left: 0;
         padding-top: 0;
@@ -3069,11 +3056,6 @@ sup {
 
     [class*=progress].active {
         background-image: url(../img/page7/p7_progress_on_m.png) !important;
-    }
-
-    #page7 .visual,
-    #page7>.content {
-        display: none;
     }
 }
 

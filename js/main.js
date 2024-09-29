@@ -30,7 +30,7 @@ $(document).ready(() => {
         $('.youtube--2').remove();
     });
 
-    const pageSwiper = () => {
+    const pcSwiper = () => {
         const swiper = new Swiper('.section-pages', {
             direction: 'vertical',
             touchReleaseOnEdges: true,
@@ -109,49 +109,17 @@ $(document).ready(() => {
                         $('.UNI-footer').css('display', 'block');
                     }
                 },
-                slideChangeTransitionStart: function (swiper) {
+                slideChangeTransitionStart: (swiper) => {
                     swiper.allowTouchMove = false;
                 },
                 slideChangeTransitionEnd: (swiper) => {
                     swiper.allowTouchMove = true;
                 },
                 touchStart: (swiper, event) => {
-                    const currentSlide = swiper.slides[swiper.activeIndex];
-                    const slideScrollTop = currentSlide.scrollTop;
-                    const scrollHeight = currentSlide.scrollHeight;
-                    const clientHeight = currentSlide.clientHeight;
-
-                    const isAtTop = slideScrollTop === 0;
-                    let isAtBottom = (slideScrollTop + clientHeight >= scrollHeight);
-                    if (swiper.realIndex === 6) {
-                        isAtBottom = false;
-                    }
-
-                    if (isAtTop || isAtBottom) {
-                        swiper.allowTouchMove = true;
-                    } else {
-                        swiper.allowTouchMove = false;
-                    }
-                    event.stopPropagation();
+                    handleSmallHeight(swiper, event);
                 },
                 touchMove: (swiper, event) => {
-                    const currentSlide = swiper.slides[swiper.activeIndex];
-                    const slideScrollTop = currentSlide.scrollTop;
-                    const scrollHeight = currentSlide.scrollHeight;
-                    const clientHeight = currentSlide.clientHeight;
-
-                    const isAtTop = slideScrollTop === 0;
-                    let isAtBottom = (slideScrollTop + clientHeight >= scrollHeight);
-                    if (swiper.realIndex === 6) {
-                        isAtBottom = false;
-                    }
-
-                    if (isAtTop || isAtBottom) {
-                        swiper.allowTouchMove = true;
-                    } else {
-                        swiper.allowTouchMove = false;
-                    }
-                    event.stopPropagation();
+                    handleSmallHeight(swiper, event);
                 }
             }
         });
@@ -164,14 +132,9 @@ $(document).ready(() => {
         for (let i = 0; i < 7; i++) {
             addPageClick(i, swiper);
         }
-    }
+    };
 
-    if ($(window).width() > 768) {
-        pageSwiper();
-    } else {
-        $('.event_gnb').toggleClass('type_default');
-        $('.event_gnb').toggleClass('type_clear');
-        $('.progress1').toggleClass('active');
+    const mobileSwiper = () => {
         new Swiper('.section-pages', {
             direction: 'vertical',
             slidesPerView: "auto",
@@ -209,13 +172,15 @@ $(document).ready(() => {
                 }
             }
         });
+    };
 
+    const mobileP7Swiper = () => {
         new Swiper('.nested-swiper', {
             direction: 'horizontal',
             slidesPerView: 1,
             mousewheelControl: true,
             autoHeight: true,
-            speed: 0,
+            speed: 1000,
             navigation: {
                 nextEl: '.nested-swiper .swiper-button-next',
                 prevEl: '.nested-swiper .swiper-button-prev',
@@ -242,18 +207,52 @@ $(document).ready(() => {
                 }
             }
         });
+    };
+
+    if ($(window).width() > 768) {
+        pcSwiper();
+    } else {
+        $('.event_gnb').toggleClass('type_default');
+        $('.event_gnb').toggleClass('type_clear');
+        $('.progress1').toggleClass('active');
+        mobileSwiper();
+        mobileP7Swiper();
     }
 });
+
+const handleSmallHeight = (swiper, event) => {
+    swiper.allowSlidePrev = true;
+    swiper.allowSlideNext = true;
+    const currentSlide = swiper.slides[swiper.activeIndex];
+    const slideScrollTop = currentSlide.scrollTop;
+    const scrollHeight = currentSlide.scrollHeight;
+    const clientHeight = currentSlide.clientHeight;
+    const isAtTop = slideScrollTop === 0;
+    const isAtBottom = (slideScrollTop + clientHeight >= scrollHeight);
+
+    if (isAtTop) {
+        swiper.allowTouchMove = true;
+        swiper.allowSlideNext = false;
+    } else if (isAtBottom) {
+        swiper.allowSlidePrev = false;
+        swiper.allowTouchMove = true;
+    } else {
+        swiper.allowTouchMove = false;
+        swiper.allowSlidePrev = false;
+        swiper.allowSlideNext = false;
+    }
+    event.stopPropagation();
+};
 
 const addPageClick = (index, swiper) => {
     $(`.page_p${index + 1}`).on('click', () => {
         swiper.slideTo(index);
     });
-}
+};
 
 const addAnimateClass = (arr) => {
     arr.forEach(ele => $(ele).addClass('animate'));
-}
+};
 
 const openVideo = (video) => {
     $('.plate_modal').toggleClass('-active');
@@ -267,4 +266,4 @@ const openVideo = (video) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen></iframe>`);
-}
+};
